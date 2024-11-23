@@ -13,6 +13,7 @@ MatrixLive Perform is an open-source, cross-platform software designed to provid
 - **Embedded:**
   - Arch Linux
 
+![swsw1](https://github.com/user-attachments/assets/2d560b9c-331f-4185-95a4-b9d0a3d27f71)
 ## Features
 
 - **VST/VST3 Support:**  
