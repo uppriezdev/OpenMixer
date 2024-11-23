@@ -11,6 +11,7 @@ VERSION = 1.0.0
 
 # Source files
 SOURCES += \
+    src/core/powerbutton.cpp \
     src/core/systemmonitor.cpp \
     src/core/systemprocess.cpp \
     src/main.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 # Header files
 HEADERS += \
+    src/core/powerbutton.hpp \
     src/core/systemmonitor.hpp \
     src/core/systemprocess.hpp \
     src/gui/app.hpp
@@ -26,7 +28,6 @@ HEADERS += \
 RESOURCES += \
     Resources/shared.qrc
 
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -34,10 +35,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 # Output directories
 DESTDIR = $$PWD/bin
-OBJECTS_DIR = $$PWD/build_linux/obj
-MOC_DIR = $$PWD/build_linux/moc
-RCC_DIR = $$PWD/build_linux/rcc
-UI_DIR = $$PWD/build_linux/ui
+OBJECTS_DIR = $$PWD/build/obj
+MOC_DIR = $$PWD/build/moc
+RCC_DIR = $$PWD/build/rcc
+UI_DIR = $$PWD/build/ui
 
 # Compiler specific flags
 *msvc* {
@@ -58,3 +59,5 @@ CONFIG(release, debug|release) {
     DEFINES += QT_NO_DEBUG
     DEFINES += QT_NO_DEBUG_OUTPUT
 }
+
+DISTFILES +=

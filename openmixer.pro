@@ -11,6 +11,7 @@ VERSION = 1.0.0
 
 # Source files
 SOURCES += \
+    src/core/powerbutton.cpp \
     src/core/systemmonitor.cpp \
     src/core/systemprocess.cpp \
     src/main.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 # Header files
 HEADERS += \
+    src/core/powerbutton.hpp \
     src/core/systemmonitor.hpp \
     src/core/systemprocess.hpp \
     src/gui/app.hpp
@@ -57,3 +59,5 @@ CONFIG(release, debug|release) {
     DEFINES += QT_NO_DEBUG
     DEFINES += QT_NO_DEBUG_OUTPUT
 }
+
+DISTFILES +=

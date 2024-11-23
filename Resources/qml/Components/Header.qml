@@ -883,18 +883,15 @@ Rectangle {
                 implicitWidth: 32
                 implicitHeight: 32
                 flat: true
-
                 contentItem: IconImage {
                     source: "qrc:/icon/power.svg"
                     iconColor: parent.hovered ? accentColor : textColor
                 }
-
                 background: Rectangle {
                     color: parent.pressed ? buttonPressedColor :
                            parent.hovered ? buttonHoverColor : "transparent"
                     radius: 4
                 }
-
                 onClicked: powerMenu.open()
 
                 Popup {
@@ -904,7 +901,6 @@ Rectangle {
                     width: 180
                     padding: 1
                     z: 1000
-
                     background: Rectangle {
                         color: "#1E1E1E"
                         border.color: "#363636"
@@ -913,21 +909,11 @@ Rectangle {
 
                     contentItem: ColumnLayout {
                         spacing: 0
-
                         Repeater {
                             model: ListModel {
-                                ListElement {
-                                    text: "Shutdown"
-                                    iconSource: "qrc:/icon/power.svg"
-                                }
-                                ListElement {
-                                    text: "Restart"
-                                    iconSource: "qrc:/icon/restart.svg"
-                                }
-                                ListElement {
-                                    text: "Switch to Desktop"
-                                    iconSource: "qrc:/icon/desktop.svg"
-                                }
+                                ListElement { text: "Shutdown"; action: "shutdown" }
+                                ListElement { text: "Restart"; action: "restart" }
+                                ListElement { text: "Switch to Desktop"; action: "switchDesktop" }
                             }
 
                             Button {
@@ -940,11 +926,6 @@ Rectangle {
                                     anchors.fill: parent
                                     anchors.leftMargin: 12
                                     anchors.rightMargin: 12
-
-                                    IconImage {
-                                        source: model.iconSource
-                                        iconColor: parent.parent.hovered ? accentColor : textColor
-                                    }
 
                                     Text {
                                         text: model.text
@@ -960,13 +941,33 @@ Rectangle {
 
                                 onClicked: {
                                     powerMenu.close()
-                                    // Add your action handling here
+                                    // Open confirmation dialog based on the action
+                                    confirmationDialog.title = "Confirm " + model.text
+                                    confirmationDialog.message = "Are you sure you want to " + model.text.toLowerCase() + "?"
+                                    confirmationDialog.confirmed.connect(function() {
+                                        if (model.action === "shutdown") {
+                                            systemInterface.shutdown()
+                                        } else if (model.action === "restart") {
+                                            systemInterface.restart()
+                                        } else if (model.action === "switchDesktop") {
+                                            systemInterface.switchToDesktop()
+                                        }
+                                    })
+                                    confirmationDialog.open()
                                 }
                             }
                         }
                     }
                 }
             }
+
+            // Confirmation Dialog
+            DialogPopup {
+                id: confirmationDialog
+                title: "Confirm Action"
+                message: "Are you sure?"
+            }
+
         }
     }
 }

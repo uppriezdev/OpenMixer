@@ -9,47 +9,48 @@ Rectangle {
     property bool loaded: false
     signal finished()
 
+    // Determine platform-specific splash image
+    property string splashSource: {
+        // Check if the current system is Arch Linux
+        if (Qt.platform.os === "linux" && isArchLinux()) {
+            return "qrc:/images/archsplash.png"
+        } else {
+            return "qrc:/images/archsplash.png"
+        }
+    }
+
+    function isArchLinux() {
+        // Detect Arch Linux using /etc/os-release (if available)
+        try {
+            var file = Qt.openFile("/etc/os-release", "r")
+            if (file) {
+                var content = file.readAll()
+                file.close()
+                return content.indexOf("Arch") !== -1
+            }
+        } catch (e) {
+            console.error("Could not determine Linux distribution:", e)
+        }
+        return false
+    }
+
+    // Background image for the splash screen
     Image {
-        id: logo
-        source: "qrc:/icon/logo.svg"
-        width: 64  // Adjust size as needed
-        height: width
-        anchors.centerIn: parent
+        id: splashBackground
+        source: splashSource
+        anchors.fill: parent
         fillMode: Image.PreserveAspectFit
-        opacity: 0
+    }
 
-        SequentialAnimation {
-            running: true
+    Timer {
+        id: splashTimer
+        interval: 3000  // Adjust duration as needed (milliseconds)
+        running: true
+        repeat: false
 
-            // Fade in animation
-            NumberAnimation {
-                target: logo
-                property: "opacity"
-                from: 1
-                to: 1
-                duration: 1000
-                easing.type: Easing.InOutQuad
-            }
-
-            // Wait a bit
-            PauseAnimation {
-                duration: 1000
-            }
-
-            // Fade out animation
-            NumberAnimation {
-                target: logo
-                property: "opacity"
-                from: 1
-                to: 0
-                duration: 1000
-                easing.type: Easing.InOutQuad
-            }
-
-            onFinished: {
-                splash.timeout = true
-                if (splash.loaded) splash.finished()
-            }
+        onTriggered: {
+            splash.timeout = true
+            if (splash.loaded) splash.finished()
         }
     }
 

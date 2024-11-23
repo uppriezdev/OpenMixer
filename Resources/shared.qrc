@@ -60,5 +60,11 @@
         <file>qml/Components/EffectTrackItem.qml</file>
         <file>qml/Pages/Loading.qml</file>
         <file>icon/loading.svg</file>
+        <file>qml/Components/ErrorDialog.qml</file>
+        <file>images/about.png</file>
+        <file>images/archsplash.png</file>
+        <file>images/background.png</file>
+        <file>images/splash.png</file>
+        <file>qml/Components/DialogPopup.qml</file>
     </qresource>
 </RCC>
