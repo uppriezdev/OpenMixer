@@ -1,0 +1,5 @@
+<!-- talk.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <path d="M12 2a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V6a2 2 0 0 0-2-2z" fill="white"/>
+  <path d="M7 12c0 2.76 2.24 5 5 5s5-2.24 5-5h2c0 3.53-2.61 6.43-6 6.92V22h-2v-3.08c-3.39-.49-6-3.39-6-6.92h2z" fill="white"/>
+</svg>

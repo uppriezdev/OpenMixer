@@ -1,0 +1,8 @@
+build_win
+build_linux
+bin
+build
+build.log
+openmixer_linux.pro.user
+openmixer.pro.user
+Makefile

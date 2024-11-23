@@ -1,0 +1,7 @@
+<!-- preset.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <path d="M4 2h16c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm0 2v16h16V4H4z" fill="white"/>
+  <rect x="6" y="8" width="2" height="8" rx="1" fill="white"/>
+  <rect x="11" y="6" width="2" height="12" rx="1" fill="white"/>
+  <rect x="16" y="10" width="2" height="6" rx="1" fill="white"/>
+</svg>
